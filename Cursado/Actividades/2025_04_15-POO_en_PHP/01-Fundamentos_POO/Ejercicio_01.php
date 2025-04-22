@@ -6,7 +6,7 @@
 		public function showBookData() {
 			if (!$this->title || !$this->author) {
 				echo "Title or author is undefined.";
-				exit(1);
+				return;
 			}
 		
 			echo "Title: {$this->title}. Author: {$this->author}\n";

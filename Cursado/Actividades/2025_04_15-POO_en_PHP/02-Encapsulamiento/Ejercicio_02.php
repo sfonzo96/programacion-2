@@ -1,4 +1,4 @@
-?php
+<?php
 	class User {
 		private $age;
 		
@@ -13,7 +13,7 @@
 		public function setAge($age) {
 			if (!($age > 0)) {
 				echo "Age should be positive!";
-				exit(1);
+				return;
 			}
 
 			$this->age = $age;

@@ -13,7 +13,7 @@
 		public function deposit($amount) {
 			if (!($amount > 0)) {
 				echo "Amount should be positive!";
-				exit(1);
+				return;
 			}
 
 			$this->balance += $amount;
