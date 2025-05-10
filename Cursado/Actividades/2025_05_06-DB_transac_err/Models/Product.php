@@ -1,5 +1,7 @@
-
 <?php
+
+namespace Models;
+
 class Product
 {
 	public ?int $id;
@@ -13,4 +15,3 @@ class Product
 		$this->id = $id;
 	}
 }
-?>

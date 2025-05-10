@@ -1,7 +1,9 @@
 <?php
-require_once 'db.php';
-require_once 'DAO/ProductDao.php';
-require_once 'Models/Product.php';
+require_once "db.php";
+require_once "DAO/ProductDAO.php";
+
+use Data\Database;
+use DAO\ProductDAO;
 
 $pdo = Database::getPDOInstance();
 $productDAO = new ProductDAO($pdo);

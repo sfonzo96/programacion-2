@@ -1,4 +1,14 @@
 <?php
+
+namespace DAO;
+
+require_once "Models/Account.php";
+
+use PDO;
+use PDOException;
+use Models\Account;
+
+
 class AccountDAO
 {
 	private PDO $pdo;
@@ -49,7 +59,7 @@ class AccountDAO
 		}
 	}
 
-	// Quizás convenga refinar este método	
+	// Quizás convenga refinar este método
 	public function transferBalance(int $destinationId, int $originId, float $transferAmount): bool
 	{
 		$sqlWithdrawl = "UPDATE accounts SET balance = balance - :withdrawlAmount WHERE id = :originId;";

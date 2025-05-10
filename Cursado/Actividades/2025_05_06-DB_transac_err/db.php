@@ -1,5 +1,10 @@
 <?php
 // singleton?
+namespace Data;
+
+use PDO;
+use PDOException;
+
 class Database
 {
 	private static string $host = 'localhost';

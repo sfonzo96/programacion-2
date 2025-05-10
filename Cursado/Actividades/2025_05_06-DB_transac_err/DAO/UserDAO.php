@@ -1,4 +1,13 @@
 <?php
+
+namespace DAO;
+
+require_once "Models/User.php";
+
+use PDO;
+use PDOException;
+use Models\User;
+
 class UserDAO
 {
 	private PDO $pdo;

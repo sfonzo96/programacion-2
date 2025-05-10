@@ -1,7 +1,11 @@
 <?php
 require_once "db.php";
-require_once "DAO/AccountDao.php";
+require_once "DAO/AccountDAO.php";
 require_once "Models/Account.php";
+
+use Data\Database;
+use DAO\AccountDAO;
+use Models\Account;
 
 $pdo = Database::getPDOInstance();
 $accountDAO = new AccountDAO($pdo);

@@ -1,4 +1,7 @@
 <?php
+
+namespace Models;
+
 class Account
 {
 	public ?int $id;

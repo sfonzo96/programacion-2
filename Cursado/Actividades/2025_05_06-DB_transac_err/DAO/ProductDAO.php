@@ -1,4 +1,13 @@
 <?php
+
+namespace DAO;
+
+require_once "Models/Product.php";
+
+use PDO;
+use PDOException;
+use Models\Product;
+
 class ProductDAO
 {
 	private PDO $pdo;
