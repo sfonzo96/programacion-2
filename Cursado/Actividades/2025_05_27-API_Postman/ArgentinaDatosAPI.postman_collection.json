@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "49375b0f-f421-49f7-b820-d3d1d4aa7747",
+		"name": "ArgentinaDatosAPI",
+		"description": "[https://argentinadatos.com/docs/](https://argentinadatos.com/docs/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24627924"
+	},
+	"item": [
+		{
+			"name": "EventosPresidenciales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.argentinadatos.com/v1/eventos/presidenciales",
+					"protocol": "https",
+					"host": ["api", "argentinadatos", "com"],
+					"path": ["v1", "eventos", "presidenciales"]
+				},
+				"description": "### GET /v1/eventos/presidenciales\n\nRetorna una lista de eventos presidenciales.\n\n#### Respuesta\n\nSe retorna un array de objectos JSON que siguen la siguiente estructura:\n\n- `fecha` (string): Fecha del evento.\n    \n- `tipo` (string): Tipo del evento.\n    \n- `evento` (string): Breve descripción del evento.\n    \n\nEjemplo de respuesta:\n\n``` json\n[\n    {\n        \"fecha\": \"2023-11-19\",\n        \"tipo\": \"elecciones\",\n        \"evento\": \"Balotaje\"\n    },\n    {\n        \"fecha\": \"2023-12-10\",\n        \"tipo\": \"asuncion\",\n        \"evento\": \"Asume Javier Milei\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Feriados2025",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.argentinadatos.com/v1/feriados/2025",
+					"protocol": "https",
+					"host": ["api", "argentinadatos", "com"],
+					"path": ["v1", "feriados", "2025"]
+				},
+				"description": "### GET v1/feriados/{año}\n\nRetorna una lista de feriados para el año indicado.\n\n#### Petición (parámetros)\n\n- `año`: Indica el año de los feriados de interés.\n    \n\n#### Respuesta\n\nSe retorna un array de objectos JSON que siguen la siguiente estructura:\n\n- `fecha` (string): Fecha del feriado.\n    \n- `tipo` (string): Tipo del feriado.\n    \n- `nombre` (string): Nombre del feriado.\n    \n\nEjemplo de respuesta:\n\n``` json\n[\n  {\n        \"fecha\": \"2025-01-01\",\n        \"tipo\": \"inamovible\",\n        \"nombre\": \"Año nuevo\"\n    },\n    {\n        \"fecha\": \"2025-03-03\",\n        \"tipo\": \"inamovible\",\n        \"nombre\": \"Carnaval\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "DolarHistorico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.argentinadatos.com/v1/cotizaciones/dolares",
+					"protocol": "https",
+					"host": ["api", "argentinadatos", "com"],
+					"path": ["v1", "cotizaciones", "dolares"]
+				},
+				"description": "### GET v1/cotizaciones/dolares\n\nRetorna una lista de cotizaciones de los distintos dolares (blue, mayorista y oficial) desde el 3 de enero de 2011 al día de la fecha.\n\n#### Respuesta\n\nSe retorna un array de objectos JSON que siguen la siguiente estructura:\n\n- `casa` (string): Tipo de casa o cotización.\n    \n- `compra` (integer): Cotización de compra en pesos.\n    \n- `venta` (integer): Cotización de venta en pesos..\n    \n- `fecha` (string): Fecha de la cotización.\n    \n\nEjemplo de respuesta:\n\n``` json\n[\n    {\n        \"casa\": \"blue\",\n        \"compra\": 4,\n        \"venta\": 4,\n        \"fecha\": \"2011-01-03\"\n    },\n    {\n        \"casa\": \"mayorista\",\n        \"compra\": 3.97,\n        \"venta\": 3.98,\n        \"fecha\": \"2011-01-03\"\n    },\n    {\n        \"casa\": \"oficial\",\n        \"compra\": 4,\n        \"venta\": 4,\n        \"fecha\": \"2011-01-03\"\n    },\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "DolarHistoricoBlue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.argentinadatos.com/v1/cotizaciones/dolares/blue/",
+					"protocol": "https",
+					"host": ["api", "argentinadatos", "com"],
+					"path": ["v1", "cotizaciones", "dolares", "blue", ""]
+				},
+				"description": "### GET v1/cotizaciones/dolares/{casa}\n\nRetorna una lista de cotizaciones de una cotización específica desde el 3 de enero de 2011 al día de la fecha.\n\n#### Petición (parámetros)\n\n- `casa`: Tipo de casa o cotiiación. Admite `blue`, `mayorista` y `oficial`.\n    \n\n#### Respuesta\n\nSe retorna un array de objectos JSON que siguen la siguiente estructura:\n\n- `casa` (string): Tipo de casa o cotización.\n    \n- `compra` (integer): Cotización de compra en pesos.\n    \n- `venta` (integer): Cotización de venta en pesos..\n    \n- `fecha` (string): Fecha de la cotización.\n    \n\nEjemplo de respuesta:\n\n``` json\n[\n    {\n        \"casa\": \"blue\",\n        \"compra\": 4,\n        \"venta\": 4,\n        \"fecha\": \"2011-01-03\"\n    },\n    {\n        \"casa\": \"blue\",\n        \"compra\": 4,\n        \"venta\": 4,\n        \"fecha\": \"2011-01-04\"\n    },\n    {\n        \"casa\": \"blue\",\n        \"compra\": 4,\n        \"venta\": 4,\n        \"fecha\": \"2011-01-05\"\n    },\n    {\n        \"casa\": \"blue\",\n        \"compra\": 4,\n        \"venta\": 4,\n        \"fecha\": \"2011-01-06\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		}
+	]
+}
