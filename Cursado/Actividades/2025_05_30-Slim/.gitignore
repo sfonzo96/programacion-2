@@ -1,0 +1,30 @@
+# Dependencias de Composer
+/vendor/
+
+# Configuración sensible
+.env
+
+# Archivos de entorno y logs
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de IDEs y editores
+.idea/
+.vscode/
+
+# Cachés
+.cache/
+.phpunit.result.cache
+
+# PHPUnit coverage
+coverage/
+
+# Archivos temporales de despliegue
+*.bak
+*.tmp
+
+# Archivos .htaccess (necesarios para servidor web, no esenciales para proyecto de prueba)
+**/.htaccess
