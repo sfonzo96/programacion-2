@@ -7,9 +7,9 @@ management, metrics storage, SSE support, and network/host tracking.
 
 -   API serves system/metric data for hosts and networks.
 -   Developed using PHP's Slim Framework.
--   Must work with another backend daemon found [here](https://github.com/sfonzo96/monitor-go), which is the actual
+-   Must work with another backend daemon found [here](https://github.com/sfonzo96/go-monitor-daemons), which is the actual
     collector for the metrics and networks scanner.
-
+-	Most importantly, this is an associate's degree final project of the 2nd Programming's course. Real intention is to later rebuild this all in Golang.
 ## Requirements
 
 -   PHP 8+
@@ -81,4 +81,4 @@ management, metrics storage, SSE support, and network/host tracking.
 
 ## Contributing
 
-Small fixes and improvements welcome. Keep changes minimal and add a short note in the PR describing the intent.
+Small fixes and improvements are welcomed. Keep changes minimal and add a short note in the PR describing the intent.
