@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • Login</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/login/styles.css">
+</head>
+
+<body>
+  <main class="container center" style="height:100vh">
+    <form class="card vstack login" id="loginForm" onsubmit="return false;">
+      <div class="header"><span>Login</span></div>
+      <div class="body vstack">
+        <div class="field"><label>Username</label><input id="username" class="input" autocomplete="username"
+            placeholder="admin"></div>
+        <div class="field"><label>Password</label><input id="password" type="password" class="input"
+            autocomplete="current-password" placeholder="admin123"></div>
+        <div class="hstack" style="justify-content:space-between">
+          <label class="small">
+            <input type="checkbox" id="remember"> Remember me
+          </label>
+        </div>
+        <button id="loginBtn" class="btn primary">Sign in</button>
+      </div>
+    </form>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/login/script.js" type="module"></script>
+</body>
+
+</html>

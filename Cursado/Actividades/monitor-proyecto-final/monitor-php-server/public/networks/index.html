@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • Networks</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/networks/styles.css">
+  <script src="/scripts/protectRoute.js" type="module"></script>
+  <script src="/scripts/notifications.js" type="module"></script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo"></div> Monitor
+      </div>
+      <a href="/dashboard/">Dashboard</a>
+      <!-- <a href="/metrics/">Metrics</a> -->
+      <a href="/stats/">Stats</a>
+      <a href="/charts/">Charts</a>
+      <a href="/networks/" class="active">Networks</a>
+      <a href="/hosts/">Hosts</a>
+      <a href="/system/">System</a>
+      <span class="spacer"></span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container vstack">
+    <div class="card">
+      <div class="header"><span>Networks</span></div>
+      <div class="body vstack">
+        <div class="search-box">
+          <input class="input" id="searchNetworks" placeholder="Search networks...">
+        </div>
+        <div class="hstack">
+          <div class="field"><label>IP Address</label><input class="input" id="ip" placeholder="192.168.1.0"></div>
+          <div class="field"><label>CIDR Mask</label><input class="input" id="cidr" placeholder="24"></div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button id="addBtn" class="btn primary">Add</button>
+          </div>
+        </div>
+        <table class="table" id="networksTable">
+          <thead>
+            <tr>
+              <th style="text-align: center;">ID</th>
+              <th style="text-align: center;">Network</th>
+              <th style="text-align: center;">Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/networks/script.js" type="module"></script>
+</body>
+
+</html>

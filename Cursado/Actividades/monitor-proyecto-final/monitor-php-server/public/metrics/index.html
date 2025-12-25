@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • Metrics</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/metrics/styles.css">
+  <script src="/scripts/protectRoute.js" type="module"></script>
+  <script src="/scripts/notifications.js" type="module"></script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo"></div> Monitor
+      </div>
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/stats/">Stats</a>
+      <a href="/charts/">Charts</a>
+      <a href="/networks/">Networks</a>
+      <a href="/hosts/">Hosts</a>
+      <a href="/system/">System</a>
+      <a href="/metrics/" class="active">Metrics</a>
+      <span class="spacer"></span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container vstack">
+    <div class="card">
+      <div class="header"><span>Metric detail</span></div>
+      <div class="body vstack">
+        <div class="hstack">
+          <div class="field"><label>Metric ID</label><input class="input" id="metricId" placeholder="e.g. 1"></div>
+          <button id="loadBtn" class="btn">Load</button>
+        </div>
+        <div id="metricBox" class="vstack">
+          <div><span class="small">Name</span>
+            <div id="mName">-</div>
+          </div>
+          <div><span class="small">Description</span>
+            <div id="mDesc" class="small">-</div>
+          </div>
+          <div><span class="small">Unit</span>
+            <div id="mUnit">-</div>
+          </div>
+        </div>
+        <table class="table" id="recordsTable">
+          <thead>
+            <tr>
+              <th>Record ID</th>
+              <th>Value</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/metrics/script.js" type="module"></script>
+</body>
+
+</html>

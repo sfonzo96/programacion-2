@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • System</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/system/styles.css">
+  <script src="/scripts/protectRoute.js" type="module"></script>
+  <script src="/scripts/notifications.js" type="module"></script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo"></div> Monitor
+      </div>
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/stats/">Stats</a>
+      <a href="/charts/">Charts</a>
+      <a href="/networks/">Networks</a>
+      <a href="/hosts/">Hosts</a>
+      <a href="/system/" class="active">System</a>
+      <!-- <a href="/metrics/">Metrics</a> -->
+      <span class="spacer"></span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container vstack">
+    <section class="grid">
+      <div class="card">
+        <div class="header"><span>System info</span></div>
+        <div class="body grid cols-2" id="sysinfo">
+          <div class="field"><label>Hostname</label>
+            <div class="value" id="hostname">-</div>
+          </div>
+          <div class="field"><label>OS</label>
+            <div class="value" id="os">-</div>
+          </div>
+          <div class="field"><label>Uptime</label>
+            <div class="value" id="uptime">-</div>
+          </div>
+          <div class="field"><label>CPU</label>
+            <div class="value" id="cpu">-</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="card">
+        <div class="header"><span>Processes</span><button id="refreshProc" class="btn small">Refresh</button></div>
+        <div class="body">
+          <pre id="processes" class="scroll"></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/system/script.js" type="module"></script>
+</body>
+
+</html>

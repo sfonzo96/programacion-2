@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • Charts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/charts/styles.css">
+  <script src="/scripts/protectRoute.js" type="module"></script>
+  <script src="/scripts/notifications.js" type="module"></script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo"></div> Monitor
+      </div>
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/stats/">Stats</a>
+      <a href="/charts/" class="active">Charts</a>
+      <a href="/networks/">Networks</a>
+      <a href="/hosts/">Hosts</a>
+      <a href="/system/">System</a>
+      <!-- <a href="/metrics/">Metrics</a> -->
+      <span class="spacer"></span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container vstack">
+    <div class="hstack">
+      <div class="field">
+        <label>Select Metric</label>
+        <select id="metricSelect" class="input">
+          <option value="">Loading metrics...</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>&nbsp;</label>
+        <button id="refreshData" class="btn ghost">Refresh</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="header">
+        <span id="chartTitle">Metric Visualization</span>
+        <div class="hstack">
+          <span class="small" id="lastUpdate"></span>
+        </div>
+      </div>
+      <div class="body">
+        <div class="chart-container">
+          <canvas id="metricChart"></canvas>
+        </div>
+        <div id="noData" class="center" style="height:300px;display:none">
+          <div class="vstack center">
+            <span class="muted">No data available</span>
+            <span class="small">Select a metric to view its history</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="header"><span>Latest Value</span></div>
+        <div class="body center">
+          <div class="stat" id="latestValue">-</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="header"><span>Average</span></div>
+        <div class="body center">
+          <div class="stat" id="avgValue">-</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="header"><span>Records</span></div>
+        <div class="body center">
+          <div class="stat" id="recordCount">-</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/charts/script.js" type="module"></script>
+</body>
+
+</html>

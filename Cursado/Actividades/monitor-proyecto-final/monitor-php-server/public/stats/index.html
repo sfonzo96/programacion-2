@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • Stats</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/stats/styles.css">
+  <script src="/scripts/protectRoute.js" type="module"></script>
+  <script src="/scripts/notifications.js" type="module"></script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo"></div> Monitor
+      </div>
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/stats/" class="active">Stats</a>
+      <a href="/charts/">Charts</a>
+      <a href="/networks/">Networks</a>
+      <a href="/hosts/">Hosts</a>
+      <a href="/system/">System</a>
+      <!-- <a href="/metrics/">Metrics</a> -->
+      <span class="spacer"></span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container vstack">
+    <div class="card">
+      <div class="header"><span>Metrics</span></div>
+      <div class="body">
+        <table class="table" id="metricsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Unit</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/stats/script.js" type="module"></script>
+</body>
+
+</html>

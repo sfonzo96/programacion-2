@@ -1,0 +1,49 @@
+# Own files
+notes.md
+src/Utils/Scripts/netScanner
+# Composer
+/vendor/
+
+# Dotenv environment variables
+.env
+
+# Logs and error files
+*.log
+*.cache
+logs/
+storage/logs/
+php_errors.log
+
+# Temporary directories
+/tmp/
+temp/
+.cache/
+.cache-loader/
+.cache-*
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# PHPUnit
+.phpunit.result.cache
+coverage/
+
+# Tool-generated files
+# composer.lock # If using Composer, do NOT ignore this file
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Docker (if used)
+docker-compose.override.yml
+.env.docker
+
+# Slim Framework cache (if using route caching, etc.)
+/cache/

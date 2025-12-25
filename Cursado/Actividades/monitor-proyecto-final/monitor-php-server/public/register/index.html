@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor • Register</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="/register/styles.css">
+  <script src="/scripts/protectRoute.js" type="module"></script>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo"></div> Monitor
+      </div>
+      <a href="/login/">Login</a>
+      <span class="spacer"></span>
+      <a href="/dashboard/" class="btn">App</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <form class="card vstack" id="regForm" onsubmit="return false;" style="max-width:560px;margin:40px auto">
+      <div class="header"><span>Register user</span></div>
+      <div class="body vstack">
+        <div class="grid cols-2">
+          <div class="field"><label>First name</label><input id="firstName" class="input"></div>
+          <div class="field"><label>Last name</label><input id="lastName" class="input"></div>
+        </div>
+        <div class="field"><label>Username</label><input id="username" class="input"></div>
+        <div class="grid cols-2">
+          <div class="field"><label>Password</label><input id="password" type="password" class="input"></div>
+          <div class="field"><label>Confirm password</label><input id="confirmPassword" type="password" class="input">
+          </div>
+        </div>
+        <div class="hstack" style="justify-content:flex-end"><button id="regBtn" class="btn primary">Create</button>
+        </div>
+        <div class="small muted">Note: Only admins can create users. This page will fail if your role lacks permission.
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/register/script.js" type="module"></script>
+</body>
+
+</html>

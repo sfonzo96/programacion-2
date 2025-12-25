@@ -1,0 +1,11 @@
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.stat.large {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--primary);
+}
