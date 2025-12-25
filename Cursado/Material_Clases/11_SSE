@@ -1,0 +1,70 @@
+# **HTML SSE (Server-Sent Events)**
+
+Los **Server-Sent Events (SSE)** son una tecnología de HTML5 que permite al servidor enviar información al navegador en **tiempo real**. A diferencia de los WebSockets, SSE es un canal **unidireccional**, en el que solo el servidor transmite datos. Es ideal para notificaciones, actualizaciones de feeds y monitoreo de métricas en tiempo real.
+
+SSE funciona mediante una **conexión HTTP persistente**, lo que permite enviar múltiples mensajes sin interrumpir la comunicación. Los mensajes siguen un formato específico, comenzando con `data:` y finalizando con un **doble salto de línea**. Opcionalmente, pueden incluir identificadores (`id`), eventos personalizados (`event`) o un tiempo de reconexión (`retry`). Si la conexión se interrumpe, el cliente se reconecta automáticamente.
+
+El **cliente** utiliza el objeto **EventSource**, que permite escuchar mensajes estándar o eventos personalizados y manejar errores. El **servidor** debe enviar la cabecera `Content-Type: text/event-stream` y mantener la conexión abierta mientras transmite datos.
+
+---
+
+## **Ejemplo**
+
+### **Servidor (PHP)**
+
+```php
+<?php
+header('Content-Type: text/event-stream');
+header('Cache-Control: no-cache');
+
+$counter = 0;
+while ($counter < 5) {
+    $counter++;
+    echo "data: Mensaje número $counter\n\n";
+    flush();
+    sleep(1);
+}
+?>
+```
+
+### **Cliente (JavaScript)**
+
+```html
+<script>
+const source = new EventSource('sse.php');
+
+source.onmessage = function(event) {
+    console.log('Mensaje del servidor:', event.data);
+};
+
+source.onerror = function(error) {
+    console.error('Error en SSE:', error);
+};
+</script>
+```
+
+El servidor PHP envía un mensaje cada segundo durante cinco iteraciones. El navegador, mediante `EventSource`, recibe cada mensaje y lo muestra en la consola. La conexión se mantiene abierta y se cierra automáticamente al terminar el bucle.
+
+---
+
+## **Ventajas y limitaciones**
+
+SSE es **simple y eficiente**, funciona sobre HTTP estándar, permite reconexión automática y es compatible con la mayoría de navegadores modernos. Sin embargo, es **unidireccional**, no soporta Internet Explorer y los navegadores limitan el número de conexiones simultáneas.
+
+---
+
+## **Buenas prácticas**
+
+* Usar `id` para retomar mensajes si la conexión se interrumpe.
+* Definir `retry` para controlar reconexiones automáticas.
+* Evitar mensajes demasiado grandes.
+* Cerrar la conexión cuando no sea necesaria.
+
+---
+
+## **Fuentes bibliográficas**
+
+1. W3C. *Server-Sent Events (SSE) Specification*. [https://www.w3.org/TR/eventsource/](https://www.w3.org/TR/eventsource/)
+2. Mozilla Developer Network (MDN). *Server-Sent Events*. [https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+3. G. Reese. *HTML5 Programming: Server-Sent Events*. O’Reilly Media, 2012.
+4. F. Law. *Real-Time Web Applications with HTML5 SSE*. Packt Publishing, 2014.

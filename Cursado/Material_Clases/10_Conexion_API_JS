@@ -1,0 +1,108 @@
+# Conexión de una API desde una página HTML con JavaScript
+
+Una API (Application Programming Interface) permite que una aplicación web obtenga o envíe datos a un servidor. Hoy en día la mayoría de las APIs en la web funcionan con HTTP y devuelven información en formato **JSON**, que es fácil de manejar desde JavaScript.
+
+Cuando una página HTML necesita conectarse a una API, lo hace mediante peticiones HTTP. El navegador envía la petición, el servidor responde con datos o mensajes de error, y JavaScript se encarga de procesar la respuesta y actualizar lo que el usuario ve en pantalla.
+
+---
+
+## APIs y métodos HTTP
+
+Las APIs suelen estar organizadas siguiendo el estilo **REST**, donde cada recurso tiene su propia URL. Para interactuar con ellos se usan métodos HTTP:
+
+* `GET` se usa para leer información.
+* `POST` para crear datos nuevos.
+* `PUT` o `PATCH` para modificar algo existente.
+* `DELETE` para eliminarlo.
+
+El cliente y el servidor se entienden a través de estos métodos y de los códigos de estado de la respuesta: 200 indica éxito, 400 algún error del cliente, 500 un error del servidor, y así.
+
+---
+
+## Comunicación en el navegador
+
+El navegador ofrece varias formas de hacer peticiones. Durante mucho tiempo se usó `XMLHttpRequest`, pero hoy lo común es **`fetch()`**, que es más sencillo y trabaja con promesas.
+
+Un ejemplo muy básico de uso es este:
+
+```js
+fetch('https://api.example.com/users')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+```
+
+Aquí se pide una lista de usuarios. La respuesta llega en JSON, se convierte en objeto de JavaScript y se imprime en consola.
+
+Si se quiere enviar datos, se puede hacer algo así:
+
+```js
+fetch('https://api.example.com/users', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ nombre: 'Ana', email: 'ana@ejemplo.com' })
+});
+```
+
+Se usa el método `POST`, se indica que el cuerpo es JSON y se mandan los datos convertidos a texto con `JSON.stringify`.
+
+---
+
+## CORS y autenticación
+
+Un detalle que suele aparecer es el **CORS (Cross-Origin Resource Sharing)**. Es una política del navegador que bloquea peticiones a otros dominios si el servidor no lo autoriza. Para que funcione, el servidor debe enviar cabeceras como `Access-Control-Allow-Origin`. Si no lo hace, la petición se bloquea aunque el servidor esté respondiendo.
+
+Otro aspecto frecuente es la autenticación. Muchas APIs requieren una clave o un token que se manda en los headers, por ejemplo:
+
+```js
+headers: {
+  'Authorization': 'Bearer mi_token_aqui'
+}
+```
+
+Es importante recordar que no se deben dejar claves privadas en el código del cliente, porque cualquiera podría verlas. Si la API necesita credenciales secretas, lo correcto es gestionarlas en un servidor propio y no desde el navegador.
+
+---
+
+## Manejo de errores y seguridad
+
+Al usar `fetch`, no alcanza con que la promesa se resuelva: hay que revisar si `res.ok` es verdadero. De lo contrario, la API puede haber devuelto un error con código 400 o 500. También es buena práctica envolver las llamadas en `try/catch` si se usa `async/await`.
+
+En cuanto a la seguridad, siempre se recomienda trabajar con HTTPS, validar lo que se recibe del servidor y no insertar datos sin procesar dentro de `innerHTML`, ya que eso abre la puerta a ataques de tipo XSS.
+
+---
+
+## Ejemplo en HTML
+
+Este es un ejemplo simple de cómo conectar una API a una página:
+
+```html
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejemplo API</title>
+</head>
+<body>
+  <button id="cargar">Cargar usuarios</button>
+  <pre id="salida">Aquí aparecerán los datos</pre>
+
+  <script>
+    document.getElementById('cargar').addEventListener('click', async () => {
+      const salida = document.getElementById('salida');
+      salida.textContent = 'Cargando...';
+      try {
+        const res = await fetch('https://api.web.com/users');
+        if (!res.ok) throw new Error('Error en la respuesta');
+        const data = await res.json();
+        salida.textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        salida.textContent = 'Error: ' + e.message;
+      }
+    });
+  </script>
+</body>
+</html>
+```
+
+Con este código, al presionar el botón se hace una petición a una API pública y se muestran los datos recibidos en pantalla.

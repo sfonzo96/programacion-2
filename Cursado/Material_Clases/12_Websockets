@@ -1,0 +1,159 @@
+# **WebSockets**
+
+Los WebSockets son un protocolo que permite comunicación bidireccional y en tiempo real entre el cliente y el servidor, usando una única conexión persistente. A diferencia de HTTP tradicional o SSE (Server-Sent Events), no se basa en peticiones y respuestas, sino que ambos lados pueden enviar mensajes en cualquier momento.
+
+Funcionan iniciando una conexión HTTP estándar que, mediante un handshake, se actualiza al protocolo WebSocket. Desde entonces, el canal queda abierto y se usa para enviar datos de forma eficiente y con baja latencia.
+
+Se utilizan en:
+
+* Chats en tiempo real
+* Juegos multijugador
+* Notificaciones instantáneas
+* Dashboards con datos en vivo
+* Sistemas de trading, IoT, monitoreo, etc.
+
+---
+
+## **Ejemplo – Node.js y PHP**
+
+Ambos servidores hacen exactamente lo mismo:
+
+1. Al conectarse un cliente, envían un mensaje de bienvenida.
+2. Cuando el cliente envía un mensaje, lo responden diciendo: `Servidor recibió: <mensaje>`.
+
+---
+
+### **Servidor WebSocket en Node.js**
+
+#### `server.js`
+
+```js
+// npm install ws
+const WebSocket = require('ws');
+const server = new WebSocket.Server({ port: 8080 });
+
+server.on('connection', socket => {
+  console.log('Cliente conectado');
+
+  socket.send('Hello world servidor WebSocket');
+
+  socket.on('message', message => {
+    console.log('Mensaje del cliente:', message);
+    socket.send(`Servidor recibió: ${message}`);
+  });
+
+  socket.on('close', () => {
+    console.log('Cliente desconectado');
+  });
+});
+```
+
+---
+
+### **Servidor WebSocket en PHP (Ratchet)**
+
+#### Instalación
+
+```bash
+composer require cboden/ratchet
+```
+
+#### `server.php`
+
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Ratchet\MessageComponentInterface;
+use Ratchet\ConnectionInterface;
+
+class ChatServer implements MessageComponentInterface {
+    public function onOpen(ConnectionInterface $conn) {
+        echo "Cliente conectado: ({$conn->resourceId})\n";
+        $conn->send("Hello world servidor WebSocket");
+    }
+
+    public function onMessage(ConnectionInterface $from, $msg) {
+        echo "Mensaje del cliente ({$from->resourceId}): $msg\n";
+        $from->send("Servidor recibió: $msg");
+    }
+
+    public function onClose(ConnectionInterface $conn) {
+        echo "Cliente desconectado: ({$conn->resourceId})\n";
+    }
+
+    public function onError(ConnectionInterface $conn, \Exception $e) {
+        echo "Error: {$e->getMessage()}\n";
+        $conn->close();
+    }
+}
+
+$server = Ratchet\App::factory('localhost', 8080);
+$server->route('/chat', new ChatServer, ['*']);
+$server->run();
+```
+
+---
+
+### **Cliente WebSocket**
+
+```html
+<script>
+// Para Node.js usar: ws://localhost:8080
+// Para PHP usar: ws://localhost:8080/chat
+const socket = new WebSocket('ws://localhost:8080/chat'); 
+
+socket.onopen = () => {
+    console.log('Conexión abierta');
+    socket.send('Hola servidor');
+};
+
+socket.onmessage = event => {
+    console.log('Mensaje del servidor:', event.data);
+};
+
+socket.onclose = () => {
+    console.log('Conexión cerrada');
+};
+
+socket.onerror = error => {
+    console.error('Error en WebSocket:', error);
+};
+</script>
+```
+
+---
+
+## **Ventajas**
+
+* Comunicación bidireccional y en tiempo real
+* Menor latencia y sobrecarga que HTTP o SSE
+* Una única conexión persistente
+* Ideal para aplicaciones interactivas o de datos en vivo
+
+---
+
+## **Limitaciones**
+
+* Requiere un servidor que implemente el protocolo WebSocket
+* Puede ser bloqueado por proxies o firewalls mal configurados
+* Cada conexión consume recursos del servidor
+* Más complejo que HTTP o SSE
+
+---
+
+## **Buenas prácticas**
+
+* Usar `wss://` (WebSocket con TLS) en producción
+* Implementar ping/pong para detectar conexiones inactivas
+* Manejar reconexión automática del cliente en caso de caídas
+* Validar todo mensaje recibido del cliente
+* Cerrar conexiones innecesarias para liberar recursos (`socket.close()`)
+* Escalar horizontalmente usando balanceadores o Redis para múltiples servidores
+
+---
+
+- IETF. The WebSocket Protocol – RFC 6455
+- Mozilla Developer Network (MDN). WebSockets API
+- Lubbers, P. Pro HTML5 Programming. Apress, 2011
+- Starks, A. Real-Time Web Apps with WebSocket. Apress, 2012
