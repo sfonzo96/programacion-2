@@ -11,12 +11,13 @@ El objetivo de este repositorio es servir como:
 
 ## 📁 Estructura del Repositorio
 
+```txt
 ├── Cursado
 │ ├── Actividades
 │ ├── Material_Clases
 │ └── Material_Practica
 └── README.md
-
+```
 
 ---
 
